@@ -15,7 +15,7 @@ export const config = {
     expiresIn: '30d', // 30 days for refresh token
   },
   frontend: {
-    url: process.env.FRONTEND_URL || 'http://localhost:3000',
+    url: process.env.FRONTEND_URL
   },
   cookie: {
     domain: process.env.COOKIE_DOMAIN || 'localhost',
