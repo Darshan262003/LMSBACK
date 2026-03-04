@@ -26,7 +26,7 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
   res.header(
     'Access-Control-Allow-Headers',
-    'Content-Type, Authorization, Accept, Origin, X-Requested-With, Access-Control-Allow-Origin'
+    'Content-Type, Authorization, Accept, Origin, X-Requested-With, Access-Control-Allow-Origin, Cache-Control, Pragma, Expires'
   );
   
   // Handle preflight requests immediately

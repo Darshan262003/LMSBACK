@@ -7,7 +7,17 @@ export const corsConfig = cors({
   origin: config.frontend.url,
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'Accept', 'Origin', 'X-Requested-With', 'Access-Control-Allow-Origin'],
+  allowedHeaders: [
+    'Content-Type',
+    'Authorization',
+    'Accept',
+    'Origin',
+    'X-Requested-With',
+    'Access-Control-Allow-Origin',
+    'Cache-Control',
+    'Pragma',
+    'Expires'
+  ],
   exposedHeaders: ['Content-Range', 'X-Content-Range'],
   maxAge: 86400, // Cache preflight for 24 hours
 });
