@@ -41,7 +41,7 @@ export const getSubjectTree = async (req: AuthRequest, res: Response) => {
   const { subjectId } = req.params;
   const userId = req.user?.id;
 
-  const tree = await subjectService.getSubjectTree(BigInt(subjectId as string), userId);
+  const tree = await subjectService.getSubjectTree(BigInt(subjectId as string), BigInt(userId));
 
   if (!tree) {
     throw new AppError('Subject not found', 404);

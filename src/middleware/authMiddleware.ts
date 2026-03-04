@@ -5,7 +5,7 @@ import { AppError } from './errorHandler';
 
 export interface AuthRequest extends Request {
   user?: {
-    id: bigint;
+    id: string;
     email: string;
   };
 }
@@ -21,7 +21,7 @@ export const authMiddleware = (req: AuthRequest, _res: Response, next: NextFunct
     const token = authHeader.split(' ')[1];
 
     const decoded = jwt.verify(token, config.jwt.secret) as {
-      id: bigint;
+      id: string;
       email: string;
     };
 

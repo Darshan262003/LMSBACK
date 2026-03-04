@@ -12,7 +12,7 @@ export const getVideo = async (req: AuthRequest, res: Response) => {
     throw new AppError('Authentication required', 401);
   }
 
-  const videoData = await videoService.getVideoWithDetails(BigInt(videoId as string), userId);
+  const videoData = await videoService.getVideoWithDetails(BigInt(videoId as string), BigInt(userId));
 
   if (!videoData) {
     throw new AppError('Video not found', 404);

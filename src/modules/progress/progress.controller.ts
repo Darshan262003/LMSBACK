@@ -12,7 +12,7 @@ export const getSubjectProgress = async (req: AuthRequest, res: Response) => {
     throw new AppError('Authentication required', 401);
   }
 
-  const progress = await progressService.getSubjectProgress(BigInt(subjectId as string), userId);
+  const progress = await progressService.getSubjectProgress(BigInt(subjectId as string), BigInt(userId));
 
   res.json({
     success: true,
@@ -28,7 +28,7 @@ export const getVideoProgress = async (req: AuthRequest, res: Response) => {
     throw new AppError('Authentication required', 401);
   }
 
-  const progress = await progressService.getVideoProgress(BigInt(videoId as string), userId);
+  const progress = await progressService.getVideoProgress(BigInt(videoId as string), BigInt(userId));
 
   res.json({
     success: true,
@@ -51,7 +51,7 @@ export const updateVideoProgress = async (req: AuthRequest, res: Response) => {
 
   const progress = await progressService.updateVideoProgress(
     BigInt(videoId as string),
-    userId,
+    BigInt(userId),
     lastPositionSeconds,
     isCompleted
   );
