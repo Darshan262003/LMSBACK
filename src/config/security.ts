@@ -8,9 +8,13 @@ export const corsConfig = cors({
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
+  exposedHeaders: ['Content-Range', 'X-Content-Range'],
 });
 
-export const securityConfig = helmet();
+export const securityConfig = helmet({
+  contentSecurityPolicy: false, // Disable for development/debugging
+  crossOriginEmbedderPolicy: false,
+});
 
 export const rateLimitConfig = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes

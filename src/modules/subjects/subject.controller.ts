@@ -15,6 +15,11 @@ export const listSubjects = async (req: Request, res: Response) => {
 
   const result = await subjectService.findAll(filters);
 
+  // Set cache control to prevent stale data
+  res.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+  res.set('Pragma', 'no-cache');
+  res.set('Expires', '0');
+
   res.json({
     success: true,
     data: serializeBigInt(result.subjects),

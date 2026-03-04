@@ -13,6 +13,9 @@ import healthRoutes from './modules/health/health.routes';
 
 const app = express();
 
+// Disable ETag for dynamic content to prevent 304 issues
+app.set('etag', false);
+
 // Middleware
 app.use(corsConfig);
 app.use(securityConfig);
