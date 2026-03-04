@@ -7,8 +7,9 @@ export const corsConfig = cors({
   origin: config.frontend.url,
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'Accept', 'Origin'],
   exposedHeaders: ['Content-Range', 'X-Content-Range'],
+  maxAge: 86400, // Cache preflight for 24 hours
 });
 
 export const securityConfig = helmet({

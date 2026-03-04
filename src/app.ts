@@ -1,6 +1,7 @@
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import { corsConfig, securityConfig, rateLimitConfig } from './config/security';
+import { config } from './config/env';
 import { requestLogger } from './middleware/requestLogger';
 import { errorHandler } from './middleware/errorHandler';
 
@@ -18,6 +19,22 @@ app.set('etag', false);
 
 // Middleware
 app.use(corsConfig);
+app.use((req, res, next) => {
+  // Explicitly set CORS headers for all responses
+  res.header('Access-Control-Allow-Origin', config.frontend.url);
+  res.header('Access-Control-Allow-Credentials', 'true');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Content-Type, Authorization, Accept, Origin'
+  );
+  
+  // Handle preflight requests immediately
+  if (req.method === 'OPTIONS') {
+    return res.sendStatus(200);
+  }
+  next();
+});
 app.use(securityConfig);
 app.use(rateLimitConfig);
 app.use(express.json());
