@@ -2,13 +2,9 @@ import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import { config } from '../config/env';
 import { AppError } from './errorHandler';
+import { AuthRequest } from '../types/express';
 
-export interface AuthRequest extends Request {
-  user?: {
-    id: string;
-    email: string;
-  };
-}
+export { AuthRequest };
 
 export const authMiddleware = (req: AuthRequest, _res: Response, next: NextFunction) => {
   try {
