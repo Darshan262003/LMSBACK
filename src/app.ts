@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import cookieParser from 'cookie-parser';
 import { corsConfig, securityConfig, rateLimitConfig } from './config/security';
 import { config } from './config/env';
@@ -19,19 +19,19 @@ app.set('etag', false);
 
 // Middleware
 app.use(corsConfig);
-app.use((req, res, next) => {
+app.use((req: any, res: any, next: any) => {
   // Explicitly set CORS headers for all responses
-  res.header('Access-Control-Allow-Origin', config.frontend.url);
-  res.header('Access-Control-Allow-Credentials', 'true');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
-  res.header(
+  res.setHeader('Access-Control-Allow-Origin', config.frontend.url);
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+  res.setHeader(
     'Access-Control-Allow-Headers',
     'Content-Type, Authorization, Accept, Origin, X-Requested-With, Access-Control-Allow-Origin, Cache-Control, Pragma, Expires'
   );
   
   // Handle preflight requests immediately
   if (req.method === 'OPTIONS') {
-    return res.sendStatus(200);
+    return res.status(200).send();
   }
   next();
 });

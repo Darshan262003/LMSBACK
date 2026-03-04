@@ -82,6 +82,7 @@ export class SubjectRepository {
               select: {
                 id: true,
                 title: true,
+                youtubeUrl: true,
                 durationSeconds: true,
                 orderIndex: true,
               },
