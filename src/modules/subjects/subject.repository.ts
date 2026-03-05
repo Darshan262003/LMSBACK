@@ -114,20 +114,15 @@ export class SubjectRepository {
       );
 
       // Mark videos as locked/unlocked and completed
-      let isFirstUncompleted = true;
+      // FORCE UNLOCK ALL VIDEOS - All videos are accessible
       subject.sections = subject.sections.map((section) => ({
         ...section,
         videos: section.videos.map((video) => {
           const isCompleted = completedVideoIds.has(video.id);
-          const isLocked = isFirstUncompleted && !isCompleted ? false : !isFirstUncompleted;
-          
-          if (!isCompleted && isFirstUncompleted) {
-            isFirstUncompleted = false;
-          }
 
           return {
             ...video,
-            isLocked,
+            isLocked: false, // Force unlock all videos
             isCompleted,
           };
         }),

@@ -16,15 +16,8 @@ class VideoService {
 
     const { video, previousVideo, nextVideo } = result;
 
-    // Check if video is locked
-    const isFirstVideo = !previousVideo;
-    const isLocked = isFirstVideo
-      ? false
-      : !(await this.repository.checkPreviousVideoCompletion(
-          video.sectionId,
-          video.orderIndex,
-          userId
-        ));
+    // Force unlock all videos - all videos are accessible
+    const isLocked = false;
 
     return {
       id: video.id,
